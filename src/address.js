@@ -22,7 +22,7 @@ function mkPrivKey (phrase: string): string {
  * @param {String} wif (wif hashing bytes (default: 0x80))
  * @return {Sting} WIF format (uncompressed)
  */
-function privKeyToWIF (privKey: string, toCompressed: boolean = false, wif: string = zconfig.mainnet.wif): string {
+function privKeyToWIF (privKey: string, toCompressed: boolean = false, wif: string = zconfig.testnet.wif): string {
   if (toCompressed) privKey = privKey + '01'
 
   return bs58check.encode(Buffer.from(wif + privKey, 'hex'))
@@ -63,7 +63,7 @@ function WIFToPrivKey (wifPk: string): string {
  * @param {String} pubKeyHash (public key hash (optional, else use defaul))
  * @return {String} zencash address
  */
-function pubKeyToAddr (pubKey: string, pubKeyHash: string = zconfig.mainnet.pubKeyHash): string {
+function pubKeyToAddr (pubKey: string, pubKeyHash: string = zconfig.testnet.pubKeyHash): string {
   const hash160 = zcrypto.hash160(Buffer.from(pubKey, 'hex'))
   return bs58check
     .encode(Buffer.from(pubKeyHash + hash160, 'hex'))
@@ -93,7 +93,7 @@ function mkMultiSigRedeemScript (pubKeys: [string], M: number, N: number): strin
  * @param {String} RedeemScript (redeem script)
  * @return {String} Address
  */
-function multiSigRSToAddress (redeemScript: string, scriptHash: string = zconfig.mainnet.scriptHash): string {
+function multiSigRSToAddress (redeemScript: string, scriptHash: string = zconfig.testnet.scriptHash): string {
   // Protocol: RIPEMD160(SHA256(script))
   const s256 = zcrypto.sha256(Buffer.from(redeemScript, 'hex'))
   const r160 = zcrypto.ripemd160(Buffer.from(s256, 'hex'))

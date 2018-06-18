@@ -55,7 +55,7 @@ function mkPubkeyHashReplayScript (
   address: string,
   blockHeight: number,
   blockHash: string,
-  pubKeyHash: string = zconfig.mainnet.pubKeyHash
+  pubKeyHash: string = zconfig.testnet.pubKeyHash
 ): string {
   var addrHex = bs58check.decode(address).toString('hex')
 

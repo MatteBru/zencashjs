@@ -25,7 +25,7 @@ function mkZSecretKey (phrase: string): string {
  * @return {Sting} sk (spending key)
  */
 function zSecretKeyToSpendingKey (a_sk: string, zcSpendingKeyHash: ?string): string {
-  zcSpendingKeyHash = zcSpendingKeyHash || zconfig.mainnet.zcSpendingKeyHash
+  zcSpendingKeyHash = zcSpendingKeyHash || zconfig.testnet.zcSpendingKeyHash
 
   const buf = Buffer.from(zcSpendingKeyHash + a_sk, 'hex')
   return bs58check.encode(buf).toString('hex')
@@ -64,7 +64,7 @@ function zSecretKeyToTransmissionKey (a_sk: string): string {
  * @return {String} Zaddress
  */
 function mkZAddress (a_pk: string, pk_enc: string, zcPaymentAddressHash: ?string): string {
-  zcPaymentAddressHash = zcPaymentAddressHash || zconfig.mainnet.zcPaymentAddressHash
+  zcPaymentAddressHash = zcPaymentAddressHash || zconfig.testnet.zcPaymentAddressHash
 
   const buf = Buffer.from(zcPaymentAddressHash + a_pk + pk_enc, 'hex')
   return bs58check.encode(buf).toString('hex')
